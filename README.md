@@ -50,11 +50,11 @@
 
 ## Prerequests
 
-- Create an account if you don't have on [TMDB](https://www.themoviedb.org/).
-  Because I use its free API to consume movie/tv data.
-- And then follow the [documentation](https://developers.themoviedb.org/3/getting-started/introduction) to create API Key
-- Finally, if you use v3 of TMDB API, create a file named `.env`, and copy and paste the content of `.env.example`.
-  And then paste the API Key you just created.
+- Install and setup svn server locally [SVNserver](https://subversion.apache.org/) for create a central repo
+- Install jenkins and setup enviroment [Jenkins](https://www.jenkins.io/doc/book/installing/linux/). for automate all this project
+- Install sonarqube and set enviroment [SonarQube](https://docs.sonarsource.com/sonarqube/latest/setup-and-upgrade/install-the-server/introduction/) for scan the source code.
+- Install and configure [Nexus](https://www.fosstechnix.com/how-to-install-nexus-repository-on-ubuntu/) for store the artifacts.
+- Install and configure [Tomcat](https://tomcat.apache.org/download-90.cgi) for deploy our application. 
 
 ## Which features this project deal with
 
