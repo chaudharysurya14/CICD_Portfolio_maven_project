@@ -1,0 +1,1520 @@
+Started by user DevSecOps_surya
+Obtained Jenkinsfile from svn http://192.168.80.24/svn/devops_project
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/hello_world_pipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Updating http://192.168.80.24/svn/devops_project at revision '2023-11-18T17:59:54.655 +0530' --quiet
+Using sole credentials surya/****** in realm ‘<http://192.168.80.24:80> Subversion Repository’
+At revision 63
+
+Using sole credentials surya/****** in realm ‘<http://192.168.80.24:80> Subversion Repository’
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Tool Install)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Initialize)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ echo PATH = /var/lib/jenkins/tools/hudson.model.JDK/java11/bin:/var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven3/bin:/var/lib/jenkins/tools/hudson.model.JDK/java11/bin:/var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+PATH = /var/lib/jenkins/tools/hudson.model.JDK/java11/bin:/var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven3/bin:/var/lib/jenkins/tools/hudson.model.JDK/java11/bin:/var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
++ echo M2_HOME = /var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven3
+M2_HOME = /var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven3
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check secrets)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ trufflehog3 http://192.168.80.24/svn/devops_project/ -f json -o truffelhog_output.json
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/git/__init__.py", line 166, in <module>
+    refresh()
+  File "/usr/local/lib/python3.10/dist-packages/git/__init__.py", line 153, in refresh
+    if not Git.refresh(path=path):
+  File "/usr/local/lib/python3.10/dist-packages/git/cmd.py", line 391, in refresh
+    raise ImportError(err)
+ImportError: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh()
+
+All git commands will error until this is rectified.
+
+This initial warning can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|none|n|0: for no warning or exception
+    - warn|w|warning|1: for a printed warning
+    - error|e|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/bin/trufflehog3", line 5, in <module>
+    from trufflehog3.cli import run
+  File "/usr/local/lib/python3.10/dist-packages/trufflehog3/cli.py", line 5, in <module>
+    import git
+  File "/usr/local/lib/python3.10/dist-packages/git/__init__.py", line 168, in <module>
+    raise ImportError("Failed to initialize: {0}".format(_exc)) from _exc
+ImportError: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh()
+
+All git commands will error until this is rectified.
+
+This initial warning can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|none|n|0: for no warning or exception
+    - warn|w|warning|1: for a printed warning
+    - error|e|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+
++ true
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check Dependency)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] dependencyCheck
+[INFO] Instance is null, returning unconfigured instance
+[INFO] Using system property [[{0}] [{1}]]
+[INFO] Setting default auxiliaries to "{0}"
+[INFO] setting defaultCompositeCacheAttributes to {0}
+[INFO] setting defaultElementAttributes to {0}
+[INFO] initialized MemoryCache for {0}
+[INFO] Constructed cache with name [{0}] and cache attributes {1}
+[INFO] No cache event logger defined for auxiliary [{0}]
+[INFO] Using standard serializer [{0}] for auxiliary [{1}]
+[INFO] {0}: Set maxKeySize to: "{1}"
+[INFO] {0}: Cache file root directory: {1}
+[INFO] {0}: Indexed Disk Cache is alive.
+[INFO] initialized MemoryCache for {0}
+[INFO] Constructed cache with name [{0}] and cache attributes {1}
+[INFO] No cache event logger defined for auxiliary [{0}]
+[INFO] Using standard serializer [{0}] for auxiliary [{1}]
+[INFO] {0}: Set maxKeySize to: "{1}"
+[INFO] {0}: Cache file root directory: {1}
+[INFO] {0}: Indexed Disk Cache is alive.
+[INFO] initialized MemoryCache for {0}
+[INFO] Constructed cache with name [{0}] and cache attributes {1}
+[INFO] No cache event logger defined for auxiliary [{0}]
+[INFO] Using standard serializer [{0}] for auxiliary [{1}]
+[INFO] {0}: Set maxKeySize to: "{1}"
+[INFO] {0}: Cache file root directory: {1}
+[INFO] {0}: Indexed Disk Cache is alive.
+[INFO] Parsed regions {0}
+[INFO] Finished configuration in {0} ms.
+[INFO] Checking for updates
+[INFO] Skipping NVD check since last check was within 4 hours.
+[INFO] Skipping RetireJS update since last update was within 24 hours.
+[INFO] Skipping Hosted Suppressions file update since last update was within 2 hours.
+[INFO] Skipping Known Exploited Vulnerabilities update check since last check was within 24 hours.
+[INFO] Check for updates complete (57 ms)
+[INFO] 
+
+Dependency-Check is an open source tool performing a best effort analysis of 3rd party dependencies; false positives and false negatives may exist in the analysis performed by the tool. Use of the tool and the reporting provided constitutes acceptance for use in an AS IS condition, and there are NO warranties, implied or otherwise, with regard to the analysis or its use. Any use of the tool and the reporting provided is at the user’s risk. In no event shall the copyright holder or OWASP be held liable for any damages whatsoever arising out of or in connection with the use of this tool, the analysis performed, or the resulting report.
+
+
+   About ODC: https://jeremylong.github.io/DependencyCheck/general/internals.html
+   False Positives: https://jeremylong.github.io/DependencyCheck/general/suppression.html
+
+💖 Sponsor: https://github.com/sponsors/jeremylong
+
+
+[INFO] Analysis Started
+[INFO] Finished Archive Analyzer (0 seconds)
+[INFO] Finished File Name Analyzer (0 seconds)
+[INFO] Finished Jar Analyzer (0 seconds)
+[INFO] Finished Central Analyzer (0 seconds)
+[INFO] Finished Dependency Merging Analyzer (0 seconds)
+[INFO] Finished Hint Analyzer (0 seconds)
+[INFO] Finished Version Filter Analyzer (0 seconds)
+[INFO] Created CPE Index (3 seconds)
+[INFO] Finished CPE Analyzer (3 seconds)
+[INFO] Finished False Positive Analyzer (0 seconds)
+[INFO] Finished NVD CVE Analyzer (0 seconds)
+[INFO] Finished Sonatype OSS Index Analyzer (0 seconds)
+[INFO] Finished Vulnerability Suppression Analyzer (0 seconds)
+[INFO] Finished Known Exploited Vulnerability Analyzer (0 seconds)
+[INFO] Finished Dependency Bundling Analyzer (0 seconds)
+[INFO] Finished Unused Suppression Rule Analyzer (0 seconds)
+[INFO] Analysis Complete (4 seconds)
+[INFO] Writing report to: /var/lib/jenkins/workspace/hello_world_pipeline/./dependency-check-report.xml
+[INFO] Element event queue destroyed: {0}
+[INFO] In DISPOSE, [{0}] fromRemote [{1}]
+[INFO] In DISPOSE, [{0}] auxiliary [{1}]
+[INFO] In DISPOSE, [{0}] put {1} into auxiliary [{2}]
+[INFO] In dispose, destroying event queue.
+[INFO] Cache event queue destroyed: {0}
+[INFO] {0}: Saving keys to: {1}, key count: {2}
+[INFO] {0}: Finished saving keys.
+[INFO] {0}: Shutdown complete.
+[INFO] In DISPOSE, [{0}] disposing of memory cache.
+[INFO] Memory Cache dispose called.
+[INFO] In DISPOSE, [{0}] fromRemote [{1}]
+[INFO] In DISPOSE, [{0}] auxiliary [{1}]
+[INFO] In DISPOSE, [{0}] put {1} into auxiliary [{2}]
+[INFO] In dispose, destroying event queue.
+[INFO] Cache event queue destroyed: {0}
+[INFO] {0}: Saving keys to: {1}, key count: {2}
+[INFO] {0}: Finished saving keys.
+[INFO] {0}: Shutdown complete.
+[INFO] In DISPOSE, [{0}] disposing of memory cache.
+[INFO] Memory Cache dispose called.
+[INFO] In DISPOSE, [{0}] fromRemote [{1}]
+[INFO] In DISPOSE, [{0}] auxiliary [{1}]
+[INFO] In DISPOSE, [{0}] put {1} into auxiliary [{2}]
+[INFO] In dispose, destroying event queue.
+[INFO] Cache event queue destroyed: {0}
+[INFO] {0}: Saving keys to: {1}, key count: {2}
+[INFO] {0}: Finished saving keys.
+[INFO] {0}: Shutdown complete.
+[INFO] In DISPOSE, [{0}] disposing of memory cache.
+[INFO] Memory Cache dispose called.
+[INFO] In dispose, destroying event queue.
+[ERROR] {0}: Not alive and dispose was called, filename: {1}
+[INFO] In dispose, destroying event queue.
+[ERROR] {0}: Not alive and dispose was called, filename: {1}
+[INFO] In dispose, destroying event queue.
+[ERROR] {0}: Not alive and dispose was called, filename: {1}
+[Pipeline] dependencyCheckPublisher
+Collecting Dependency-Check artifact
+Parsing file /var/lib/jenkins/workspace/hello_world_pipeline/dependency-check-report.xml
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Generate and compile)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ mvn compile
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.example.maven-project:server:jar:1.0-SNAPSHOT
+[WARNING] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter.
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.example.maven-project:webapp:war:1.0-SNAPSHOT
+[WARNING] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter.
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.example.maven-project:maven-project:pom:1.0-SNAPSHOT
+[WARNING] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter. @ line 50, column 24
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[WARNING] The project com.example.maven-project:maven-project:pom:1.0-SNAPSHOT uses prerequisites which is only intended for maven-plugin projects but not for non maven-plugin projects. For such purposes you should use the maven-enforcer-plugin. See https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Maven Project                                                      [pom]
+[INFO] Server                                                             [jar]
+[INFO] Webapp                                                             [war]
+[INFO] 
+[INFO] --------------< com.example.maven-project:maven-project >---------------
+[INFO] Building Maven Project 1.0-SNAPSHOT                                [1/3]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] ------------------< com.example.maven-project:server >------------------
+[INFO] Building Server 1.0-SNAPSHOT                                       [2/3]
+[INFO]   from server/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:2.5:resources (default-resources) @ server ---
+[debug] execute contextualize
+[INFO] Using 'utf-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/hello_world_pipeline/server/src/main/resources
+[INFO] 
+[INFO] --- compiler:2.3.2:compile (default-compile) @ server ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] ------------------< com.example.maven-project:webapp >------------------
+[INFO] Building Webapp 1.0-SNAPSHOT                                       [3/3]
+[INFO]   from webapp/pom.xml
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- resources:2.5:resources (default-resources) @ webapp ---
+[debug] execute contextualize
+[INFO] Using 'utf-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/hello_world_pipeline/webapp/src/main/resources
+[INFO] 
+[INFO] --- compiler:2.3.2:compile (default-compile) @ webapp ---
+[INFO] No sources to compile
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Maven Project 1.0-SNAPSHOT:
+[INFO] 
+[INFO] Maven Project ...................................... SUCCESS [  0.002 s]
+[INFO] Server ............................................. SUCCESS [  1.246 s]
+[INFO] Webapp ............................................. SUCCESS [  0.011 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.392 s
+[INFO] Finished at: 2023-11-18T18:00:18+05:30
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test Application)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ mvn test
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.example.maven-project:server:jar:1.0-SNAPSHOT
+[WARNING] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter.
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.example.maven-project:webapp:war:1.0-SNAPSHOT
+[WARNING] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter.
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.example.maven-project:maven-project:pom:1.0-SNAPSHOT
+[WARNING] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter. @ line 50, column 24
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[WARNING] The project com.example.maven-project:maven-project:pom:1.0-SNAPSHOT uses prerequisites which is only intended for maven-plugin projects but not for non maven-plugin projects. For such purposes you should use the maven-enforcer-plugin. See https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Maven Project                                                      [pom]
+[INFO] Server                                                             [jar]
+[INFO] Webapp                                                             [war]
+[INFO] 
+[INFO] --------------< com.example.maven-project:maven-project >---------------
+[INFO] Building Maven Project 1.0-SNAPSHOT                                [1/3]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] ------------------< com.example.maven-project:server >------------------
+[INFO] Building Server 1.0-SNAPSHOT                                       [2/3]
+[INFO]   from server/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:2.5:resources (default-resources) @ server ---
+[debug] execute contextualize
+[INFO] Using 'utf-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/hello_world_pipeline/server/src/main/resources
+[INFO] 
+[INFO] --- compiler:2.3.2:compile (default-compile) @ server ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:2.5:testResources (default-testResources) @ server ---
+[debug] execute contextualize
+[INFO] Using 'utf-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/hello_world_pipeline/server/src/test/resources
+[INFO] 
+[INFO] --- compiler:2.3.2:testCompile (default-testCompile) @ server ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- surefire:2.11:test (default-test) @ server ---
+[INFO] Surefire report directory: /var/lib/jenkins/workspace/hello_world_pipeline/server/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.example.TestGreeter
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.076 sec
+
+Results :
+
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] ------------------< com.example.maven-project:webapp >------------------
+[INFO] Building Webapp 1.0-SNAPSHOT                                       [3/3]
+[INFO]   from webapp/pom.xml
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- resources:2.5:resources (default-resources) @ webapp ---
+[debug] execute contextualize
+[INFO] Using 'utf-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/hello_world_pipeline/webapp/src/main/resources
+[INFO] 
+[INFO] --- compiler:2.3.2:compile (default-compile) @ webapp ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:2.5:testResources (default-testResources) @ webapp ---
+[debug] execute contextualize
+[INFO] Using 'utf-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/hello_world_pipeline/webapp/src/test/resources
+[INFO] 
+[INFO] --- compiler:2.3.2:testCompile (default-testCompile) @ webapp ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:2.11:test (default-test) @ webapp ---
+[INFO] No tests to run.
+[INFO] Surefire report directory: /var/lib/jenkins/workspace/hello_world_pipeline/webapp/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+Results :
+
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Maven Project 1.0-SNAPSHOT:
+[INFO] 
+[INFO] Maven Project ...................................... SUCCESS [  0.002 s]
+[INFO] Server ............................................. SUCCESS [  1.421 s]
+[INFO] Webapp ............................................. SUCCESS [  0.256 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.805 s
+[INFO] Finished at: 2023-11-18T18:00:23+05:30
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Delete old Application)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ mvn clean package
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.example.maven-project:server:jar:1.0-SNAPSHOT
+[WARNING] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter.
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.example.maven-project:webapp:war:1.0-SNAPSHOT
+[WARNING] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter.
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.example.maven-project:maven-project:pom:1.0-SNAPSHOT
+[WARNING] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter. @ line 50, column 24
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[WARNING] The project com.example.maven-project:maven-project:pom:1.0-SNAPSHOT uses prerequisites which is only intended for maven-plugin projects but not for non maven-plugin projects. For such purposes you should use the maven-enforcer-plugin. See https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Maven Project                                                      [pom]
+[INFO] Server                                                             [jar]
+[INFO] Webapp                                                             [war]
+[INFO] 
+[INFO] --------------< com.example.maven-project:maven-project >---------------
+[INFO] Building Maven Project 1.0-SNAPSHOT                                [1/3]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ maven-project ---
+[INFO] Deleting /var/lib/jenkins/workspace/hello_world_pipeline/target
+[INFO] 
+[INFO] ------------------< com.example.maven-project:server >------------------
+[INFO] Building Server 1.0-SNAPSHOT                                       [2/3]
+[INFO]   from server/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ server ---
+[INFO] Deleting /var/lib/jenkins/workspace/hello_world_pipeline/server/target
+[INFO] 
+[INFO] --- resources:2.5:resources (default-resources) @ server ---
+[debug] execute contextualize
+[INFO] Using 'utf-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/hello_world_pipeline/server/src/main/resources
+[INFO] 
+[INFO] --- compiler:2.3.2:compile (default-compile) @ server ---
+[INFO] Compiling 1 source file to /var/lib/jenkins/workspace/hello_world_pipeline/server/target/classes
+[INFO] 
+[INFO] --- resources:2.5:testResources (default-testResources) @ server ---
+[debug] execute contextualize
+[INFO] Using 'utf-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/hello_world_pipeline/server/src/test/resources
+[INFO] 
+[INFO] --- compiler:2.3.2:testCompile (default-testCompile) @ server ---
+[INFO] Compiling 1 source file to /var/lib/jenkins/workspace/hello_world_pipeline/server/target/test-classes
+[INFO] 
+[INFO] --- surefire:2.11:test (default-test) @ server ---
+[INFO] Surefire report directory: /var/lib/jenkins/workspace/hello_world_pipeline/server/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.example.TestGreeter
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.04 sec
+
+Results :
+
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- jar:3.3.0:jar (default-jar) @ server ---
+[INFO] Building jar: /var/lib/jenkins/workspace/hello_world_pipeline/server/target/server.jar
+[INFO] 
+[INFO] ------------------< com.example.maven-project:webapp >------------------
+[INFO] Building Webapp 1.0-SNAPSHOT                                       [3/3]
+[INFO]   from webapp/pom.xml
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ webapp ---
+[INFO] Deleting /var/lib/jenkins/workspace/hello_world_pipeline/webapp/target
+[INFO] 
+[INFO] --- resources:2.5:resources (default-resources) @ webapp ---
+[debug] execute contextualize
+[INFO] Using 'utf-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/hello_world_pipeline/webapp/src/main/resources
+[INFO] 
+[INFO] --- compiler:2.3.2:compile (default-compile) @ webapp ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:2.5:testResources (default-testResources) @ webapp ---
+[debug] execute contextualize
+[INFO] Using 'utf-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/hello_world_pipeline/webapp/src/test/resources
+[INFO] 
+[INFO] --- compiler:2.3.2:testCompile (default-testCompile) @ webapp ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:2.11:test (default-test) @ webapp ---
+[INFO] No tests to run.
+[INFO] Surefire report directory: /var/lib/jenkins/workspace/hello_world_pipeline/webapp/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+Results :
+
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- war:3.3.2:war (default-war) @ webapp ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [webapp] in [/var/lib/jenkins/workspace/hello_world_pipeline/webapp/target/webapp]
+[INFO] Processing war project
+[INFO] Copying webapp resources [/var/lib/jenkins/workspace/hello_world_pipeline/webapp/src/main/webapp]
+[INFO] Building war: /var/lib/jenkins/workspace/hello_world_pipeline/webapp/target/webapp.war
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Maven Project 1.0-SNAPSHOT:
+[INFO] 
+[INFO] Maven Project ...................................... SUCCESS [  0.462 s]
+[INFO] Server ............................................. SUCCESS [  2.797 s]
+[INFO] Webapp ............................................. SUCCESS [  2.973 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.383 s
+[INFO] Finished at: 2023-11-18T18:00:33+05:30
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Application)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ mvn clean install
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.example.maven-project:server:jar:1.0-SNAPSHOT
+[WARNING] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter.
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.example.maven-project:webapp:war:1.0-SNAPSHOT
+[WARNING] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter.
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.example.maven-project:maven-project:pom:1.0-SNAPSHOT
+[WARNING] Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter. @ line 50, column 24
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[WARNING] The project com.example.maven-project:maven-project:pom:1.0-SNAPSHOT uses prerequisites which is only intended for maven-plugin projects but not for non maven-plugin projects. For such purposes you should use the maven-enforcer-plugin. See https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Maven Project                                                      [pom]
+[INFO] Server                                                             [jar]
+[INFO] Webapp                                                             [war]
+[INFO] 
+[INFO] --------------< com.example.maven-project:maven-project >---------------
+[INFO] Building Maven Project 1.0-SNAPSHOT                                [1/3]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ maven-project ---
+[INFO] 
+[INFO] --- install:3.1.1:install (default-install) @ maven-project ---
+[INFO] Installing /var/lib/jenkins/workspace/hello_world_pipeline/pom.xml to /var/lib/jenkins/.m2/repository/com/example/maven-project/maven-project/1.0-SNAPSHOT/maven-project-1.0-SNAPSHOT.pom
+[INFO] 
+[INFO] ------------------< com.example.maven-project:server >------------------
+[INFO] Building Server 1.0-SNAPSHOT                                       [2/3]
+[INFO]   from server/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ server ---
+[INFO] Deleting /var/lib/jenkins/workspace/hello_world_pipeline/server/target
+[INFO] 
+[INFO] --- resources:2.5:resources (default-resources) @ server ---
+[debug] execute contextualize
+[INFO] Using 'utf-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/hello_world_pipeline/server/src/main/resources
+[INFO] 
+[INFO] --- compiler:2.3.2:compile (default-compile) @ server ---
+[INFO] Compiling 1 source file to /var/lib/jenkins/workspace/hello_world_pipeline/server/target/classes
+[INFO] 
+[INFO] --- resources:2.5:testResources (default-testResources) @ server ---
+[debug] execute contextualize
+[INFO] Using 'utf-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/hello_world_pipeline/server/src/test/resources
+[INFO] 
+[INFO] --- compiler:2.3.2:testCompile (default-testCompile) @ server ---
+[INFO] Compiling 1 source file to /var/lib/jenkins/workspace/hello_world_pipeline/server/target/test-classes
+[INFO] 
+[INFO] --- surefire:2.11:test (default-test) @ server ---
+[INFO] Surefire report directory: /var/lib/jenkins/workspace/hello_world_pipeline/server/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.example.TestGreeter
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.032 sec
+
+Results :
+
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- jar:3.3.0:jar (default-jar) @ server ---
+[INFO] Building jar: /var/lib/jenkins/workspace/hello_world_pipeline/server/target/server.jar
+[INFO] 
+[INFO] --- install:3.1.1:install (default-install) @ server ---
+[INFO] Installing /var/lib/jenkins/workspace/hello_world_pipeline/server/pom.xml to /var/lib/jenkins/.m2/repository/com/example/maven-project/server/1.0-SNAPSHOT/server-1.0-SNAPSHOT.pom
+[INFO] Installing /var/lib/jenkins/workspace/hello_world_pipeline/server/target/server.jar to /var/lib/jenkins/.m2/repository/com/example/maven-project/server/1.0-SNAPSHOT/server-1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ------------------< com.example.maven-project:webapp >------------------
+[INFO] Building Webapp 1.0-SNAPSHOT                                       [3/3]
+[INFO]   from webapp/pom.xml
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ webapp ---
+[INFO] Deleting /var/lib/jenkins/workspace/hello_world_pipeline/webapp/target
+[INFO] 
+[INFO] --- resources:2.5:resources (default-resources) @ webapp ---
+[debug] execute contextualize
+[INFO] Using 'utf-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/hello_world_pipeline/webapp/src/main/resources
+[INFO] 
+[INFO] --- compiler:2.3.2:compile (default-compile) @ webapp ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:2.5:testResources (default-testResources) @ webapp ---
+[debug] execute contextualize
+[INFO] Using 'utf-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/hello_world_pipeline/webapp/src/test/resources
+[INFO] 
+[INFO] --- compiler:2.3.2:testCompile (default-testCompile) @ webapp ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:2.11:test (default-test) @ webapp ---
+[INFO] No tests to run.
+[INFO] Surefire report directory: /var/lib/jenkins/workspace/hello_world_pipeline/webapp/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+Results :
+
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- war:3.3.2:war (default-war) @ webapp ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [webapp] in [/var/lib/jenkins/workspace/hello_world_pipeline/webapp/target/webapp]
+[INFO] Processing war project
+[INFO] Copying webapp resources [/var/lib/jenkins/workspace/hello_world_pipeline/webapp/src/main/webapp]
+[INFO] Building war: /var/lib/jenkins/workspace/hello_world_pipeline/webapp/target/webapp.war
+[INFO] 
+[INFO] --- install:3.1.1:install (default-install) @ webapp ---
+[INFO] Installing /var/lib/jenkins/workspace/hello_world_pipeline/webapp/pom.xml to /var/lib/jenkins/.m2/repository/com/example/maven-project/webapp/1.0-SNAPSHOT/webapp-1.0-SNAPSHOT.pom
+[INFO] Installing /var/lib/jenkins/workspace/hello_world_pipeline/webapp/target/webapp.war to /var/lib/jenkins/.m2/repository/com/example/maven-project/webapp/1.0-SNAPSHOT/webapp-1.0-SNAPSHOT.war
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Maven Project 1.0-SNAPSHOT:
+[INFO] 
+[INFO] Maven Project ...................................... SUCCESS [  0.634 s]
+[INFO] Server ............................................. SUCCESS [  1.366 s]
+[INFO] Webapp ............................................. SUCCESS [  0.639 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.760 s
+[INFO] Finished at: 2023-11-18T18:00:38+05:30
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Fetch Application server)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sshagent
+FATAL: [ssh-agent] Could not find specified credentials
+[ssh-agent] Looking for ssh-agent implementation...
+[ssh-agent]   Exec ssh-agent (binary ssh-agent on a remote machine)
+$ ssh-agent
+SSH_AUTH_SOCK=/tmp/ssh-XXXXXXOVBync/agent.62892
+SSH_AGENT_PID=62895
+[ssh-agent] Started.
+[Pipeline] {
+[Pipeline] sh
++ scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/hello_world_pipeline/webapp/target/webapp.war root@192.168.80.10:/opt/tomcat/webapps/
+[Pipeline] }
+$ ssh-agent -k
+unset SSH_AUTH_SOCK;
+unset SSH_AGENT_PID;
+echo Agent pid 62895 killed;
+[ssh-agent] Stopped.
+[Pipeline] // sshagent
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy on tomcat)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sshagent
+FATAL: [ssh-agent] Could not find specified credentials
+[ssh-agent] Looking for ssh-agent implementation...
+[ssh-agent]   Exec ssh-agent (binary ssh-agent on a remote machine)
+$ ssh-agent
+SSH_AUTH_SOCK=/tmp/ssh-XXXXXXcGtNl6/agent.62913
+SSH_AGENT_PID=62916
+[ssh-agent] Started.
+[Pipeline] {
+[Pipeline] sh
++ ssh -o StrictHostKeyChecking=no root@192.168.80.10 bash /opt/tomcat/bin/shutdown.sh
+NOTE: Picked up JDK_JAVA_OPTIONS:  --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+[Pipeline] sh
++ ssh -o StrictHostKeyChecking=no root@192.168.80.10 bash /opt/tomcat/bin/startup.sh
+Tomcat started.
+[Pipeline] }
+$ ssh-agent -k
+unset SSH_AUTH_SOCK;
+unset SSH_AGENT_PID;
+echo Agent pid 62916 killed;
+[ssh-agent] Stopped.
+[Pipeline] // sshagent
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Dynamic analysis)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sshagent
+FATAL: [ssh-agent] Could not find specified credentials
+[ssh-agent] Looking for ssh-agent implementation...
+[ssh-agent]   Exec ssh-agent (binary ssh-agent on a remote machine)
+$ ssh-agent
+SSH_AUTH_SOCK=/tmp/ssh-XXXXXXS9kLV1/agent.62943
+SSH_AGENT_PID=62946
+[ssh-agent] Started.
+[Pipeline] {
+[Pipeline] sh
++ ssh -o StrictHostKeyChecking=no root@192.168.80.10 docker run --rm -v /root:/zap/wrk/:rw -t owasp/zap2docker-stable zap-full-scan.py -t http://192.168.80.10:8080/webapp/ -x zap_report || true
+Total of 37 URLs
+PASS: Directory Browsing [0]
+PASS: Vulnerable JS Library (Powered by Retire.js) [10003]
+PASS: Cookie No HttpOnly Flag [10010]
+PASS: Cookie Without Secure Flag [10011]
+PASS: Re-examine Cache-control Directives [10015]
+PASS: Cross-Domain JavaScript Source File Inclusion [10017]
+PASS: Content-Type Header Missing [10019]
+PASS: Information Disclosure - Debug Error Messages [10023]
+PASS: Information Disclosure - Sensitive Information in URL [10024]
+PASS: Information Disclosure - Sensitive Information in HTTP Referrer Header [10025]
+PASS: HTTP Parameter Override [10026]
+PASS: Information Disclosure - Suspicious Comments [10027]
+PASS: Open Redirect [10028]
+PASS: Cookie Poisoning [10029]
+PASS: User Controllable Charset [10030]
+PASS: User Controllable HTML Element Attribute (Potential XSS) [10031]
+PASS: Viewstate [10032]
+PASS: Directory Browsing [10033]
+PASS: Heartbleed OpenSSL Vulnerability (Indicative) [10034]
+PASS: Strict-Transport-Security Header [10035]
+PASS: HTTP Server Response Header [10036]
+PASS: Server Leaks Information via "X-Powered-By" HTTP Response Header Field(s) [10037]
+PASS: X-Backend-Server Header Information Leak [10039]
+PASS: Secure Pages Include Mixed Content [10040]
+PASS: HTTP to HTTPS Insecure Transition in Form Post [10041]
+PASS: HTTPS to HTTP Insecure Transition in Form Post [10042]
+PASS: User Controllable JavaScript Event (XSS) [10043]
+PASS: Big Redirect Detected (Potential Sensitive Information Leak) [10044]
+PASS: Source Code Disclosure - /WEB-INF folder [10045]
+PASS: HTTPS Content Available via HTTP [10047]
+PASS: Remote Code Execution - Shell Shock [10048]
+PASS: Content Cacheability [10049]
+PASS: Retrieved from Cache [10050]
+PASS: Relative Path Confusion [10051]
+PASS: X-ChromeLogger-Data (XCOLD) Header Information Leak [10052]
+PASS: CSP [10055]
+PASS: X-Debug-Token Information Leak [10056]
+PASS: Username Hash Found [10057]
+PASS: GET for POST [10058]
+PASS: X-AspNet-Version Response Header [10061]
+PASS: PII Disclosure [10062]
+PASS: Backup File Disclosure [10095]
+PASS: Timestamp Disclosure [10096]
+PASS: Hash Disclosure [10097]
+PASS: Cross-Domain Misconfiguration [10098]
+PASS: Source Code Disclosure [10099]
+PASS: User Agent Fuzzer [10104]
+PASS: HTTP Only Site [10106]
+PASS: Httpoxy - Proxy Header Misuse [10107]
+PASS: Reverse Tabnabbing [10108]
+PASS: Modern Web Application [10109]
+PASS: Dangerous JS Functions [10110]
+PASS: Authentication Request Identified [10111]
+PASS: Session Management Response Identified [10112]
+PASS: Verification Request Identified [10113]
+PASS: Absence of Anti-CSRF Tokens [10202]
+PASS: Private IP Disclosure [2]
+PASS: Anti-CSRF Tokens Check [20012]
+PASS: HTTP Parameter Pollution [20014]
+PASS: Heartbleed OpenSSL Vulnerability [20015]
+PASS: Cross-Domain Misconfiguration [20016]
+PASS: Source Code Disclosure - CVE-2012-1823 [20017]
+PASS: Remote Code Execution - CVE-2012-1823 [20018]
+PASS: External Redirect [20019]
+PASS: Session ID in URL Rewrite [3]
+PASS: Buffer Overflow [30001]
+PASS: Format String Error [30002]
+PASS: Integer Overflow Error [30003]
+PASS: CRLF Injection [40003]
+PASS: Parameter Tampering [40008]
+PASS: Server Side Include [40009]
+PASS: Cross Site Scripting (Reflected) [40012]
+PASS: Session Fixation [40013]
+PASS: Cross Site Scripting (Persistent) [40014]
+PASS: Cross Site Scripting (Persistent) - Prime [40016]
+PASS: Cross Site Scripting (Persistent) - Spider [40017]
+PASS: SQL Injection [40018]
+PASS: SQL Injection - MySQL [40019]
+PASS: SQL Injection - Hypersonic SQL [40020]
+PASS: SQL Injection - Oracle [40021]
+PASS: SQL Injection - PostgreSQL [40022]
+PASS: Possible Username Enumeration [40023]
+PASS: SQL Injection - SQLite [40024]
+PASS: Proxy Disclosure [40025]
+PASS: Cross Site Scripting (DOM Based) [40026]
+PASS: SQL Injection - MsSQL [40027]
+PASS: ELMAH Information Leak [40028]
+PASS: Trace.axd Information Leak [40029]
+PASS: Out of Band XSS [40031]
+PASS: .htaccess Information Leak [40032]
+PASS: .env Information Leak [40034]
+PASS: Hidden File Finder [40035]
+PASS: CORS Header [40040]
+PASS: Spring Actuator Information Leak [40042]
+PASS: Log4Shell [40043]
+PASS: Exponential Entity Expansion (Billion Laughs Attack) [40044]
+PASS: Spring4Shell [40045]
+PASS: Server Side Request Forgery [40046]
+PASS: Text4shell (CVE-2022-42889) [40047]
+PASS: Source Code Disclosure - Git  [41]
+PASS: Source Code Disclosure - SVN [42]
+PASS: Source Code Disclosure - File Inclusion [43]
+PASS: Script Active Scan Rules [50000]
+PASS: Script Passive Scan Rules [50001]
+PASS: Path Traversal [6]
+PASS: Remote File Inclusion [7]
+PASS: Insecure JSF ViewState [90001]
+PASS: Java Serialization Object [90002]
+PASS: Sub Resource Integrity Attribute Missing [90003]
+PASS: Insufficient Site Isolation Against Spectre Vulnerability [90004]
+PASS: Charset Mismatch [90011]
+PASS: XSLT Injection [90017]
+PASS: Server Side Code Injection [90019]
+PASS: Remote OS Command Injection [90020]
+PASS: XPath Injection [90021]
+PASS: Application Error Disclosure [90022]
+PASS: XML External Entity Attack [90023]
+PASS: Generic Padding Oracle [90024]
+PASS: Expression Language Injection [90025]
+PASS: SOAP Action Spoofing [90026]
+PASS: Insecure HTTP Method [90028]
+PASS: SOAP XML Injection [90029]
+PASS: WSDL File Detection [90030]
+PASS: Loosely Scoped Cookie [90033]
+PASS: Cloud Metadata Potentially Exposed [90034]
+PASS: Server Side Template Injection [90035]
+PASS: Server Side Template Injection (Blind) [90036]
+WARN-NEW: In Page Banner Information Leak [10009] x 2 
+	http://192.168.80.10:8080/sitemap.xml (404)
+	http://192.168.80.10:8080/robots.txt (404)
+WARN-NEW: Missing Anti-clickjacking Header [10020] x 2 
+	http://192.168.80.10:8080/webapp/ (200)
+	http://192.168.80.10:8080/ (200)
+WARN-NEW: X-Content-Type-Options Header Missing [10021] x 5 
+	http://192.168.80.10:8080/webapp/ (200)
+	http://192.168.80.10:8080/ (200)
+	http://192.168.80.10:8080/tomcat.css (200)
+	http://192.168.80.10:8080/favicon.ico (200)
+	http://192.168.80.10:8080/tomcat.svg (200)
+WARN-NEW: Content Security Policy (CSP) Header Not Set [10038] x 12 
+	http://192.168.80.10:8080/webapp/ (200)
+	http://192.168.80.10:8080/sitemap.xml (404)
+	http://192.168.80.10:8080/robots.txt (404)
+	http://192.168.80.10:8080/docs/ (403)
+	http://192.168.80.10:8080/docs/config/ (403)
+WARN-NEW: Cookie without SameSite Attribute [10054] x 1 
+	http://192.168.80.10:8080/webapp/ (200)
+WARN-NEW: Permissions Policy Header Not Set [10063] x 12 
+	http://192.168.80.10:8080/webapp/ (200)
+	http://192.168.80.10:8080/sitemap.xml (404)
+	http://192.168.80.10:8080/robots.txt (404)
+	http://192.168.80.10:8080/docs/ (403)
+	http://192.168.80.10:8080/docs/config/ (403)
+WARN-NEW: Weak Authentication Method [10105] x 2 
+	http://192.168.80.10:8080/manager/html (401)
+	http://192.168.80.10:8080/manager/status (401)
+WARN-NEW: Bypassing 403 [40038] x 21 
+	http://192.168.80.10:8080/docs/..;/ (200)
+	http://192.168.80.10:8080/ (200)
+	http://192.168.80.10:8080/ (200)
+	http://192.168.80.10:8080/ (200)
+	http://192.168.80.10:8080/ (200)
+WARN-NEW: Cookie Slack Detector [90027] x 1 
+	http://192.168.80.10:8080/webapp/ (200)
+ERROR [Errno 13] Permission denied: '/zap/wrk/zap_report'
+2023-11-18 12:33:47,013 I/O error: [Errno 13] Permission denied: '/zap/wrk/zap_report'
+Traceback (most recent call last):
+  File "/zap/zap-full-scan.py", line 481, in main
+    write_report(os.path.join(base_dir, report_xml), zap.core.xmlreport())
+  File "/zap/zap_common.py", line 564, in write_report
+    with open(file_path, mode='wb') as f:
+PermissionError: [Errno 13] Permission denied: '/zap/wrk/zap_report'
+Found Java version 11.0.21
+Available memory: 3907 MB
+Using JVM args: -Xmx976m
+3050 [main] INFO  org.parosproxy.paros.Constant - Copying default configuration to /home/zap/.ZAP/config.xml
+3507 [main] INFO  org.parosproxy.paros.Constant - Creating directory /home/zap/.ZAP/session
+3507 [main] INFO  org.parosproxy.paros.Constant - Creating directory /home/zap/.ZAP/dirbuster
+3508 [main] INFO  org.parosproxy.paros.Constant - Creating directory /home/zap/.ZAP/fuzzers
+3508 [main] INFO  org.parosproxy.paros.Constant - Creating directory /home/zap/.ZAP/plugin
+3778 [main] INFO  org.zaproxy.zap.DaemonBootstrap - ZAP 2.14.0 started 18/11/2023, 12:31:05 with home /home/zap/.ZAP/
+3920 [main] INFO  org.parosproxy.paros.common.AbstractParam - Setting config database.recoverylog = false was null
+3920 [main] INFO  org.parosproxy.paros.common.AbstractParam - Setting config api.disablekey = true was null
+3920 [main] INFO  org.parosproxy.paros.common.AbstractParam - Setting config api.addrs.addr.name = .* was null
+3921 [main] INFO  org.parosproxy.paros.common.AbstractParam - Setting config api.addrs.addr.regex = true was null
+3921 [main] INFO  org.parosproxy.paros.common.AbstractParam - Setting config spider.maxDuration = 0 was null
+7710 [ZAP-daemon] INFO  org.zaproxy.zap.control.ExtensionFactory - Installed add-ons: [[id=alertFilters, version=18.0.0], [id=ascanrules, version=58.0.0], [id=authhelper, version=0.10.0], [id=automation, version=0.33.0], [id=bruteforce, version=15.0.0], [id=callhome, version=0.10.0], [id=commonlib, version=1.18.0], [id=database, version=0.3.0], [id=diff, version=14.0.0], [id=directorylistv1, version=7.0.0], [id=domxss, version=18.0.0], [id=encoder, version=1.4.0], [id=exim, version=0.7.0], [id=formhandler, version=6.5.0], [id=fuzz, version=13.12.0], [id=gettingStarted, version=16.0.0], [id=graaljs, version=0.5.0], [id=graphql, version=0.20.0], [id=help, version=17.0.0], [id=hud, version=0.18.0], [id=invoke, version=14.0.0], [id=network, version=0.12.0], [id=oast, version=0.17.0], [id=onlineMenu, version=12.0.0], [id=openapi, version=38.0.0], [id=postman, version=0.2.0], [id=pscanrules, version=52.0.0], [id=quickstart, version=43.0.0], [id=replacer, version=15.0.0], [id=reports, version=0.26.0], [id=requester, version=7.4.0], [id=retest, version=0.8.0], [id=retire, version=0.27.0], [id=reveal, version=7.0.0], [id=scripts, version=42.0.0], [id=selenium, version=15.15.0], [id=soap, version=20.0.0], [id=spider, version=0.7.0], [id=spiderAjax, version=23.17.0], [id=tips, version=12.0.0], [id=webdriverlinux, version=65.0.0], [id=websocket, version=30.0.0], [id=zest, version=42.0.0]]
+7713 [ZAP-daemon] INFO  org.zaproxy.zap.control.ExtensionFactory - Loading extensions
+9132 [ZAP-daemon] INFO  org.zaproxy.addon.network.internal.TlsUtils - Using supported SSL/TLS protocols: [TLSv1.2, TLSv1.3]
+10078 [ZAP-daemon] INFO  org.zaproxy.zap.control.ExtensionFactory - Extensions loaded
+11195 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Auto-update Extension - Allows ZAP to check for updates
+11197 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Options Extension - Options Extension
+11198 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Edit Menu Extension - Edit Menu Extension
+11198 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing API Extension - Provides a rest based API for controlling and accessing ZAP
+11210 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing History Extension - History Extension
+11211 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing ExtensionReveal - Show hidden fields and enable disabled fields
+11212 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Search Extension - Search messages for strings and regular expressions
+11213 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Breakpoint Extension - Allows you to intercept and modify requests and responses
+11214 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Passive Scan Extension - Passive scanner
+11278 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Script Passive Scan Rules
+11278 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Stats Passive Scan Rule
+11278 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Anti-clickjacking Header
+11278 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Application Error Disclosure
+11279 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Big Redirect Detected (Potential Sensitive Information Leak)
+11279 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Re-examine Cache-control Directives
+11279 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Charset Mismatch
+11279 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Content Security Policy (CSP) Header Not Set
+11279 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: CSP
+11279 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Content-Type Header Missing
+11279 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Cookie No HttpOnly Flag
+11279 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Loosely Scoped Cookie
+11279 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Cookie without SameSite Attribute
+11280 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Cookie Without Secure Flag
+11280 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Cross-Domain Misconfiguration
+11280 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Cross-Domain JavaScript Source File Inclusion
+11280 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Absence of Anti-CSRF Tokens
+11280 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Directory Browsing
+11280 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Hash Disclosure
+11280 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Heartbleed OpenSSL Vulnerability (Indicative)
+11280 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Private IP Disclosure
+11281 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Session ID in URL Rewrite
+11281 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Information Disclosure - Debug Error Messages
+11281 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Information Disclosure - Sensitive Information in URL
+11281 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Information Disclosure - Sensitive Information in HTTP Referrer Header
+11281 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Information Disclosure - Suspicious Comments
+11281 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Weak Authentication Method
+11281 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: HTTP to HTTPS Insecure Transition in Form Post
+11281 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: HTTPS to HTTP Insecure Transition in Form Post
+11281 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Insecure JSF ViewState
+11282 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Reverse Tabnabbing
+11282 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Secure Pages Include Mixed Content
+11282 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Modern Web Application
+11282 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: PII Disclosure
+11282 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Retrieved from Cache
+11282 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: HTTP Server Response Header
+11282 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Strict-Transport-Security Header
+11282 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Timestamp Disclosure
+11282 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: User Controllable Charset
+11283 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Cookie Poisoning
+11283 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: User Controllable HTML Element Attribute (Potential XSS)
+11283 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: User Controllable JavaScript Event (XSS)
+11283 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Open Redirect
+11283 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Username Hash Found
+11283 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Viewstate
+11283 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: X-AspNet-Version Response Header
+11283 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: X-Backend-Server Header Information Leak
+11284 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: X-ChromeLogger-Data (XCOLD) Header Information Leak
+11284 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: X-Content-Type-Options Header Missing
+11284 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: X-Debug-Token Information Leak
+11284 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Server Leaks Information via "X-Powered-By" HTTP Response Header Field(s)
+11284 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Authentication Request Identified
+11284 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Session Management Response Identified
+11284 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Verification Request Identified
+11284 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Vulnerable JS Library (Powered by Retire.js)
+11284 [ZAP-daemon] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: WSDL File Detection
+11312 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Alerts Extension - Allows you to view and manage alerts
+11315 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Active Scan Extension - Active scanner, heavily based on the original Paros active scanner, but with additional tests added
+11320 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Standard Menus Extension - A set of common popup menus for miscellaneous tasks
+11320 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing ExtensionBruteForce - Forced browsing of files and directories using code from the OWASP DirBuster tool
+11321 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Compare Extension - Compares 2 sessions and generates an HTML file showing the differences
+11321 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing ExtensionInvoke - Invoke external applications passing context related information such as URLs and parameters
+11322 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Anti-CSRF Extension - Handles anti cross site request forgery (CSRF) tokens
+11330 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Authentication Extension - Authentication Extension
+11338 [ZAP-daemon] INFO  org.zaproxy.zap.extension.authentication.ExtensionAuthentication - Loaded authentication method types: [Form-based Authentication, HTTP/NTLM Authentication, Manual Authentication, Script-based Authentication, JSON-based Authentication]
+11340 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Log4j Extension - Logs errors to the Output tab in development mode only
+11340 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Users Extension - Users Extension
+11342 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Parameters Extension - Summarise and analyse FORM and URL parameters as well as cookies
+11342 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Script Extension - Script integration
+11345 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing ExtensionScripts - Scripting console, supports all JSR 223 scripting languages
+11547 [ZAP-daemon] WARN  org.parosproxy.paros.common.AbstractParam - Failed to create enum for 'script.console.defaultScriptChangedBehaviour' using 'Ask Each Time'. Valid values: [Keep Script, Replace Script, Ask Each Time]
+11548 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Forced User Extension - Forced User Extension
+11548 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing HTTP Sessions Extension - Extension handling HTTP sessions
+11550 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing ExtensionZest - Zest is a specialized scripting language, originally, from Mozilla specifically designed to be used in security tools
+11745 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing ExtensionDiff - ExtensionDiff
+11746 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing HTTP Panel Post Table View Extension - HTTP Panel Post Table View Extension
+11746 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Encoder Addon - Adds support for scriptable encoders to ZAP.
+11746 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Session Management Extension - Session Management Extension
+11748 [ZAP-daemon] INFO  org.zaproxy.zap.extension.sessions.ExtensionSessionManagement - Loaded session management method types: [Cookie-based Session Management, HTTP Authentication Session Management, Script-based Session Management]
+11749 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing HTTP Panel Form Table View Extension - HTTP Panel Form Table View Extension
+11750 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing WebSockets Support - Capture messages from WebSockets with the ability to set breakpoints.
+11775 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing SOAP/WSDL Support - Allows you to import a WSDL file containing operations which ZAP will access, adding them to the Sites tree.
+11776 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Core UI Extension - Core UI related functionality.
+11776 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Authorization Extension - Authorization Extension
+11776 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Requester - Allows to manually edit and send messages.
+11778 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing AJAX Spider - AJAX Spider, uses Crawljax
+11784 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing WebDriver Provider - Provides WebDrivers to control several browsers using Selenium and includes HtmlUnit browser.
+11799 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Refresh Sites Tree Extension - Adds menu item to refresh the Sites tree
+11799 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Help Extension - ZAP User Guide
+11799 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Call Home - Handles all of the calls to ZAP services
+11800 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Network Extension - Provides core networking capabilities.
+11868 [ZAP-daemon] INFO  org.zaproxy.addon.network.ConnectionOptions - Unsafe SSL/TLS renegotiation disabled.
+11869 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Extension Configuration Extension - Allows you to configure which extensions are loaded when ZAP starts
+11869 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Combined HTTP Panels Extension - Combined HTTP Panels Extension
+11869 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing HTTP Panel Hex View Extension - HTTP Panel Hex View Extension
+11870 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing HTTP Panel Image View Extension - HTTP Panel Image View Extension
+11870 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing HTTP Panel Query Table View Extension - HTTP Panel Query Table View Extension
+11870 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing HTTP Panel Syntax Highlighter View Extension - HTTP Panel Syntax Highlighter View Extension
+11870 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Keyboard Configuration Extension - Adds support for configurable keyboard shortcuts for all of the ZAP menus.
+11870 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Scanner Rule Configuration Extension - Active and passive rule configuration
+11871 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Statistics Extension - Statistics
+11872 [ZAP-daemon] INFO  org.zaproxy.zap.extension.stats.ExtensionStats - Start recording in memory stats
+11875 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Custom Pages Extension - Custom Pages Definition
+11876 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing ExtensionOnlineMenu - The Online menu links
+11876 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Out-of-band Application Security Testing - Adds Out-of-band Application Security Testing functionality.
+11890 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing OAST Scripts - Adds OAST scripts.
+11890 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Passive Scan Rules - Release status passive scan rules
+11890 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing ExtensionHUD - Heads Up Display
+12195 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing ExtensionHUDlaunch - ExtensionHUDlaunch
+12195 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Quick Start panel  - Adds the Quick Start panel for scanning and exploring applications
+12196 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Quick Start Ajax Spider integration - Add the option to use the Ajax Spider in the Quick Start scan
+12196 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Quick Start HUD Integration - HUD integration for the quick start panel
+12197 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Quick Start Browser Launcher - Launch browsers preset proxying through ZAP
+12197 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Quick Start Spider Integration - Adds the option to use the traditional Spider in the Quick Start scan.
+12198 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Scripts Automation Framework Integration - Scripts Automation
+12202 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Spider Extension - Spider used for automatically finding URIs on a site.
+12262 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Spider Automation - Spider Automation Integration
+12266 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Authentication Helper - Authentication Helper
+12270 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing AJAX Spider Browser Based Authentication Support - Enables browser based authentication when performing an authenticated AJAX Spider scan.
+12270 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing ExtensionFormHandler - This extension allows a user to change the default values used for generated content (e.g. spiders, importers).
+12278 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Ajax Spider Automation - Ajax Spider Automation Framework Integration
+12283 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing ExtensionDomXSS - DOM XSS Active Scan Rule
+12371 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Retest - Facilitates the verification of presence/absence of certain alerts.
+12372 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Automation Framework - Provides functionality to simplify using ZAP in an automated manner
+12373 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing ExtensionGraphQl - Allows you to inspect and attack GraphQL endpoints.
+12404 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing GraphQL Automation - GraphQL Automation Framework Integration
+12406 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing GraphQL Spider - GraphQL Spider Integration
+12406 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing ExtensionGettingStarted - The ZAP Getting Started Guide
+12406 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing GraalVM JavaScript Engine Extension - Provides the GraalVM JavaScript engine for ZAP scripting.
+12739 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Import/Export - Import and Export functionality supporting multiple formats.
+12741 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Import/Export Automation - Import/Export Automation Framework Integration
+12742 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing ExtensionTipsAndTricks - Tips and Tricks
+12742 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing SOAP Automation - SOAP Automation Framework Integration
+12743 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing SOAP Spider - SOAP Spider Integration
+12743 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Common Library - A library of shared functionality
+12743 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Common Library Form Handler - Common Library Form Handler Integration
+12744 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Advance Fuzzer - Provides the foundation for concrete message types (for example, HTTP, WebSockets) expose fuzzer implementations.
+12744 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing HTTP Fuzzer - Allows to fuzz HTTP messages.
+12745 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Active Scan Rules - Release status active scan rules
+12745 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing OpenAPI Import - Allows you to spider and import OpenAPI (Swagger) definitions 
+12747 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing OpenAPI Automation - OpenAPI Automation Framework Integration
+12748 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing OpenAPI Spider - OpenAPI Spider Integration
+12750 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing WebSocket Fuzzer - Allows to fuzz WebSocket messages.
+12750 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing WebSocket Message Editor - Provides the WebSocket Message Editor dialogues.
+12751 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Postman Import - Allows you to spider and import Postman collections
+12751 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Match and Replace - Easy way to replace strings in requests and responses
+12754 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Replacer Automation - Replacer Automation Framework Integration
+12755 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing ExtensionAlertFilters - Context alert rules filter
+12781 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Alert Filters Automation - Alert Filters Automation Framework Integration
+12782 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Report Generator - Templated and themed report generation functionality
+12784 [ZAP-daemon] INFO  org.parosproxy.paros.extension.ExtensionLoader - Initializing Report Generation Automation Integration - Report Generation Automation Integration
+13608 [ZAP-daemon] INFO  org.flywaydb.core.internal.license.VersionPrinter - Flyway Community Edition 9.20.0 by Redgate
+13608 [ZAP-daemon] INFO  org.flywaydb.core.internal.license.VersionPrinter - See release notes here: https://rd.gt/416ObMi
+13609 [ZAP-daemon] INFO  org.flywaydb.core.internal.license.VersionPrinter - 
+13630 [ZAP-daemon] INFO  org.flywaydb.core.internal.database.base.BaseDatabaseType - Database: jdbc:hsqldb:file:/home/zap/.ZAP/db/permanent (HSQL Database Engine 2.7)
+13636 [ZAP-daemon] WARN  org.flywaydb.core.internal.database.base.Database - Flyway upgrade recommended: HSQLDB 2.7 is newer than this version of Flyway and support has not been tested. The latest supported version of HSQLDB is 2.6.
+13659 [ZAP-daemon] INFO  org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory - Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+13662 [ZAP-daemon] INFO  org.flywaydb.core.internal.command.DbValidate - Successfully validated 1 migration (execution time 00:00.013s)
+13671 [ZAP-daemon] INFO  org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory - Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+13690 [ZAP-daemon] INFO  org.flywaydb.core.internal.command.DbMigrate - Current version of schema "PUBLIC": << Empty Schema >>
+13693 [ZAP-daemon] INFO  org.flywaydb.core.internal.command.DbMigrate - Migrating schema "PUBLIC" to version "1 - Create table boast"
+13716 [ZAP-daemon] INFO  org.flywaydb.core.internal.command.DbMigrate - Successfully applied 1 migration to schema "PUBLIC", now at version v1 (execution time 00:00.001s)
+13725 [ZAP-daemon] INFO  org.zaproxy.addon.oast.services.callback.CallbackService - Started callback service on 0.0.0.0:36457
+13732 [ZAP-daemon] INFO  org.zaproxy.addon.network.ExtensionNetwork - Creating new root CA certificate.
+14643 [ZAP-daemon] INFO  org.zaproxy.addon.network.ExtensionNetwork - New root CA certificate created.
+17768 [ZAP-daemon] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - There is/are 9 newer addons
+32221 [ZAP-DownloadInstaller] INFO  org.parosproxy.paros.network.SSLConnector - Reading supported SSL/TLS protocols...
+32222 [ZAP-DownloadInstaller] INFO  org.parosproxy.paros.network.SSLConnector - Using a SSLEngine...
+32226 [ZAP-DownloadInstaller] INFO  org.parosproxy.paros.network.SSLConnector - Done reading supported SSL/TLS protocols: [SSLv2Hello, SSLv3, TLSv1, TLSv1.1, TLSv1.2, TLSv1.3]
+36267 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Installing new addon network v0.13.0
+36384 [ZAP-DownloadInstaller] INFO  org.zaproxy.addon.network.internal.TlsUtils - Using supported SSL/TLS protocols: [TLSv1.2, TLSv1.3]
+36739 [ZAP-DownloadInstaller] INFO  org.zaproxy.addon.network.ConnectionOptions - Unsafe SSL/TLS renegotiation disabled.
+36941 [ZAP-DownloadInstaller] INFO  org.zaproxy.addon.network.ExtensionNetwork - ZAP is now listening on localhost:8080
+37007 [ZAP-DownloadInstaller] INFO  org.flywaydb.core.internal.database.base.BaseDatabaseType - Database: jdbc:hsqldb:file:/home/zap/.ZAP/db/permanent (HSQL Database Engine 2.7)
+37010 [ZAP-DownloadInstaller] WARN  org.flywaydb.core.internal.database.base.Database - Flyway upgrade recommended: HSQLDB 2.7 is newer than this version of Flyway and support has not been tested. The latest supported version of HSQLDB is 2.6.
+37015 [ZAP-DownloadInstaller] INFO  org.flywaydb.core.internal.command.DbValidate - Successfully validated 1 migration (execution time 00:00.004s)
+37024 [ZAP-DownloadInstaller] INFO  org.flywaydb.core.internal.command.DbMigrate - Current version of schema "PUBLIC": 1
+37026 [ZAP-DownloadInstaller] INFO  org.flywaydb.core.internal.command.DbMigrate - Schema "PUBLIC" is up to date. No migration necessary.
+37032 [ZAP-DownloadInstaller] INFO  org.zaproxy.addon.oast.services.callback.CallbackService - Started callback service on 0.0.0.0:44625
+37609 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Authentication Request Identified
+37609 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Session Management Response Identified
+37609 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Verification Request Identified
+37781 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Finished installing new addon network v0.13.0
+37789 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Installing new addon exim v0.8.0
+37789 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Finished installing new addon exim v0.8.0
+37805 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Installing new addon automation v0.34.0
+37886 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Finished installing new addon automation v0.34.0
+37894 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Installing new addon graphql v0.21.0
+37915 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Finished installing new addon graphql v0.21.0
+37950 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Installing new addon selenium v15.16.0
+38204 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Authentication Request Identified
+38205 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Session Management Response Identified
+38205 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Verification Request Identified
+38337 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Finished installing new addon selenium v15.16.0
+38381 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Installing new addon scripts v43.0.0
+38416 [ZAP-DownloadInstaller] WARN  org.parosproxy.paros.common.AbstractParam - Failed to create enum for 'script.console.defaultScriptChangedBehaviour' using 'Ask Each Time'. Valid values: [Keep Script, Replace Script, Ask Each Time]
+40119 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Finished installing new addon scripts v43.0.0
+40128 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Installing new addon alertFilters v19.0.0
+40142 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Finished installing new addon alertFilters v19.0.0
+40158 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Installing new addon spiderAjax v23.18.0
+40194 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Finished installing new addon spiderAjax v23.18.0
+40356 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Installing new addon commonlib v1.19.0
+40661 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Anti-clickjacking Header
+40661 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Application Error Disclosure
+40661 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Big Redirect Detected (Potential Sensitive Information Leak)
+40661 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Re-examine Cache-control Directives
+40662 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Charset Mismatch
+40662 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Content Security Policy (CSP) Header Not Set
+40662 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: CSP
+40662 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Content-Type Header Missing
+40662 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Cookie No HttpOnly Flag
+40662 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Loosely Scoped Cookie
+40662 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Cookie without SameSite Attribute
+40662 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Cookie Without Secure Flag
+40663 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Cross-Domain Misconfiguration
+40663 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Cross-Domain JavaScript Source File Inclusion
+40663 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Absence of Anti-CSRF Tokens
+40663 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Directory Browsing
+40663 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Hash Disclosure
+40663 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Heartbleed OpenSSL Vulnerability (Indicative)
+40663 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Private IP Disclosure
+40663 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Session ID in URL Rewrite
+40663 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Information Disclosure - Debug Error Messages
+40664 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Information Disclosure - Sensitive Information in URL
+40664 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Information Disclosure - Sensitive Information in HTTP Referrer Header
+40664 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Information Disclosure - Suspicious Comments
+40664 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Weak Authentication Method
+40664 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: HTTP to HTTPS Insecure Transition in Form Post
+40664 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: HTTPS to HTTP Insecure Transition in Form Post
+40664 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Insecure JSF ViewState
+40664 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Reverse Tabnabbing
+40664 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Secure Pages Include Mixed Content
+40665 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Modern Web Application
+40665 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: PII Disclosure
+40665 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Retrieved from Cache
+40665 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: HTTP Server Response Header
+40665 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Strict-Transport-Security Header
+40665 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Timestamp Disclosure
+40665 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: User Controllable Charset
+40665 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Cookie Poisoning
+40666 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: User Controllable HTML Element Attribute (Potential XSS)
+40666 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: User Controllable JavaScript Event (XSS)
+40666 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Open Redirect
+40666 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Username Hash Found
+40666 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Viewstate
+40666 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: X-AspNet-Version Response Header
+40666 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: X-Backend-Server Header Information Leak
+40666 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: X-ChromeLogger-Data (XCOLD) Header Information Leak
+40666 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: X-Content-Type-Options Header Missing
+40666 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: X-Debug-Token Information Leak
+40667 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Server Leaks Information via "X-Powered-By" HTTP Response Header Field(s)
+40693 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Authentication Request Identified
+40693 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Session Management Response Identified
+40694 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Verification Request Identified
+40703 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Vulnerable JS Library (Powered by Retire.js)
+40725 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: WSDL File Detection
+41211 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Finished installing new addon commonlib v1.19.0
+41222 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/exim-beta-0.8.0.zap
+41222 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/alertFilters-release-19.zap
+41222 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/scripts-release-43.zap
+41222 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/automation-beta-0.34.0.zap
+41222 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/spiderAjax-release-23.18.0.zap
+41222 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/graphql-alpha-0.21.0.zap
+41222 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/commonlib-release-1.19.0.zap
+41222 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/network-beta-0.13.0.zap
+41223 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/selenium-release-15.16.0.zap
+41225 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/exim-beta-0.8.0.zap
+41225 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/alertFilters-release-19.zap
+41225 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/scripts-release-43.zap
+41226 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/automation-beta-0.34.0.zap
+41226 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/spiderAjax-release-23.18.0.zap
+41226 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/graphql-alpha-0.21.0.zap
+41226 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/commonlib-release-1.19.0.zap
+41226 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/network-beta-0.13.0.zap
+41226 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/selenium-release-15.16.0.zap
+41226 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on update check complete
+41229 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Downloading add-on from: https://github.com/zaproxy/zap-extensions/releases/download/pscanrulesBeta-v35/pscanrulesBeta-beta-35.zap
+41234 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Downloading add-on from: https://github.com/zaproxy/zap-extensions/releases/download/ascanrulesBeta-v48/ascanrulesBeta-beta-48.zap
+43741 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Installing new addon pscanrulesBeta v35.0.0
+43757 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Content Cacheability
+43757 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: In Page Banner Information Leak
+43757 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Dangerous JS Functions
+43758 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Java Serialization Object
+43758 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Permissions Policy Header Not Set
+43759 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: HTTP Parameter Override
+43759 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Insufficient Site Isolation Against Spectre Vulnerability
+43759 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Source Code Disclosure
+43759 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.pscan.ExtensionPassiveScan - loaded passive scan rule: Sub Resource Integrity Attribute Missing
+43761 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Finished installing new addon pscanrulesBeta v35.0.0
+43765 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Installing new addon ascanrulesBeta v48.0.0
+43793 [ZAP-DownloadInstaller] INFO  org.zaproxy.zap.extension.autoupdate.ExtensionAutoUpdate - Finished installing new addon ascanrulesBeta v48.0.0
+43838 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/exim-beta-0.8.0.zap
+43838 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/alertFilters-release-19.zap
+43838 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/scripts-release-43.zap
+43838 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/automation-beta-0.34.0.zap
+43838 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/spiderAjax-release-23.18.0.zap
+43838 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/graphql-alpha-0.21.0.zap
+43838 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/commonlib-release-1.19.0.zap
+43839 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/network-beta-0.13.0.zap
+43839 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/selenium-release-15.16.0.zap
+43839 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/pscanrulesBeta-beta-35.zap
+43839 [ZAP-daemon] INFO  org.parosproxy.paros.CommandLine - Add-on downloaded to: /home/zap/.ZAP/plugin/ascanrulesBeta-beta-48.zap
+43854 [ZAP-daemon] INFO  org.zaproxy.addon.network.ExtensionNetwork - ZAP is now listening on 0.0.0.0:55893
+47058 [ZAP-SpiderInitThread-0] INFO  org.zaproxy.addon.spider.SpiderThread - Starting spidering scan on http://192.168.80.10:8080/ at 2023-11-18T12:31:48.672+0000
+47065 [ZAP-SpiderInitThread-0] INFO  org.zaproxy.addon.spider.Spider - Spider initializing...
+47073 [ZAP-SpiderInitThread-0] INFO  org.zaproxy.addon.spider.Spider - Starting spider...
+47613 [ZAP-SpiderThreadPool-0-thread-3] INFO  org.zaproxy.addon.spider.Spider - Spidering process is complete. Shutting down...
+47617 [ZAP-SpiderShutdownThread-0] INFO  org.zaproxy.addon.spider.SpiderThread - Spider scanning complete: true on http://192.168.80.10:8080/ at 2023-11-18T12:31:49.230+0000
+49383 [ZAP-PassiveScan-2] INFO  org.zaproxy.zap.extension.pscan.PassiveScanTaskHelper - Disabling passive scan rule Content Security Policy (CSP) Header Not Set as it has raised more than 10 alerts.
+49389 [ZAP-PassiveScan-1] INFO  org.zaproxy.zap.extension.pscan.PassiveScanTaskHelper - Disabling passive scan rule Content Cacheability as it has raised more than 10 alerts.
+49391 [ZAP-PassiveScan-2] INFO  org.zaproxy.zap.extension.pscan.PassiveScanTaskHelper - Disabling passive scan rule Permissions Policy Header Not Set as it has raised more than 10 alerts.
+52104 [ZAP-IO-Server-1-1] INFO  org.parosproxy.paros.core.scanner.Scanner - scanner started
+52229 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - Scanning 33 node(s) from http://192.168.80.10:8080
+52230 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | PathTraversalScanRule strength MEDIUM threshold MEDIUM
+52944 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | PathTraversalScanRule in 0.714s with 0 message(s) sent and 0 alert(s) raised.
+52944 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | RemoteFileIncludeScanRule strength MEDIUM threshold MEDIUM
+53022 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | RemoteFileIncludeScanRule in 0.078s with 0 message(s) sent and 0 alert(s) raised.
+53022 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SourceCodeDisclosureWebInfScanRule strength MEDIUM threshold MEDIUM
+53027 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | HeartBleedActiveScanRule strength MEDIUM threshold MEDIUM
+53038 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SourceCodeDisclosureCve20121823ScanRule strength MEDIUM threshold MEDIUM
+53073 [ZAP-ActiveScanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SourceCodeDisclosureWebInfScanRule in 0.043s with 3 message(s) sent and 0 alert(s) raised.
+53203 [ZAP-ActiveScanner-1] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | HeartBleedActiveScanRule in 0.175s with 3 message(s) sent and 0 alert(s) raised.
+53973 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SourceCodeDisclosureCve20121823ScanRule in 0.936s with 5 message(s) sent and 0 alert(s) raised.
+53974 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | RemoteCodeExecutionCve20121823ScanRule strength MEDIUM threshold MEDIUM
+54785 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | RemoteCodeExecutionCve20121823ScanRule in 0.811s with 66 message(s) sent and 0 alert(s) raised.
+54785 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | ExternalRedirectScanRule strength MEDIUM threshold MEDIUM
+54855 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | ExternalRedirectScanRule in 0.07s with 0 message(s) sent and 0 alert(s) raised.
+54855 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | ServerSideIncludeScanRule strength MEDIUM threshold MEDIUM
+54923 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | ServerSideIncludeScanRule in 0.068s with 0 message(s) sent and 0 alert(s) raised.
+54923 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | CrossSiteScriptingScanRule strength MEDIUM threshold MEDIUM
+55013 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | CrossSiteScriptingScanRule in 0.09s with 0 message(s) sent and 0 alert(s) raised.
+55014 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | PersistentXssPrimeScanRule strength MEDIUM threshold MEDIUM
+55084 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | PersistentXssPrimeScanRule in 0.07s with 0 message(s) sent and 0 alert(s) raised.
+55084 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | PersistentXssSpiderScanRule strength MEDIUM threshold MEDIUM
+55644 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | PersistentXssSpiderScanRule in 0.56s with 33 message(s) sent and 0 alert(s) raised.
+55645 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | PersistentXssScanRule strength MEDIUM threshold MEDIUM
+55706 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | PersistentXssScanRule in 0.061s with 0 message(s) sent and 0 alert(s) raised.
+55706 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SqlInjectionScanRule strength MEDIUM threshold MEDIUM
+55780 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SqlInjectionScanRule in 0.074s with 0 message(s) sent and 0 alert(s) raised.
+55780 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SqlInjectionMySqlScanRule strength MEDIUM threshold MEDIUM
+55866 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SqlInjectionMySqlScanRule in 0.086s with 0 message(s) sent and 0 alert(s) raised.
+55867 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SqlInjectionHypersonicScanRule strength MEDIUM threshold MEDIUM
+55946 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SqlInjectionHypersonicScanRule in 0.079s with 0 message(s) sent and 0 alert(s) raised.
+55947 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SqlInjectionOracleScanRule strength MEDIUM threshold MEDIUM
+55999 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SqlInjectionOracleScanRule in 0.052s with 0 message(s) sent and 0 alert(s) raised.
+55999 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SqlInjectionPostgreScanRule strength MEDIUM threshold MEDIUM
+56059 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SqlInjectionPostgreScanRule in 0.06s with 0 message(s) sent and 0 alert(s) raised.
+56059 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SqlInjectionSqLiteScanRule strength MEDIUM threshold MEDIUM
+56130 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SqlInjectionSqLiteScanRule in 0.071s with 0 message(s) sent and 0 alert(s) raised.
+56130 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | DomXssScanRule strength MEDIUM threshold MEDIUM
+70640 [Thread-879] INFO  org.zaproxy.zap.extension.domxss.DomXssScanRule - Reaper thread starting
+145125 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | DomXssScanRule in 88.995s with 287 message(s) sent and 0 alert(s) raised.
+146048 [ZAP-DomXssReaper] INFO  org.zaproxy.zap.extension.domxss.DomXssScanRule - Reaper thread exiting 0
+146460 [Thread-782] WARN  org.openqa.selenium.os.ExternalProcess - failed to copy the output of process 706
+java.io.IOException: Stream closed
+	at java.io.BufferedInputStream.getBufIfOpen(BufferedInputStream.java:176) ~[?:?]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:342) ~[?:?]
+	at java.io.InputStream.transferTo(InputStream.java:704) ~[?:?]
+	at org.openqa.selenium.os.ExternalProcess$Builder.lambda$start$0(ExternalProcess.java:209) ~[?:?]
+	at java.lang.Thread.run(Thread.java:829) [?:?]
+147638 [Thread-779] WARN  org.openqa.selenium.os.ExternalProcess - failed to copy the output of process 692
+java.io.IOException: Stream closed
+	at java.io.BufferedInputStream.getBufIfOpen(BufferedInputStream.java:176) ~[?:?]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:342) ~[?:?]
+	at java.io.InputStream.transferTo(InputStream.java:704) ~[?:?]
+	at org.openqa.selenium.os.ExternalProcess$Builder.lambda$start$0(ExternalProcess.java:209) ~[?:?]
+	at java.lang.Thread.run(Thread.java:829) [?:?]
+149205 [Thread-785] WARN  org.openqa.selenium.os.ExternalProcess - failed to copy the output of process 707
+java.io.IOException: Stream closed
+	at java.io.BufferedInputStream.getBufIfOpen(BufferedInputStream.java:176) ~[?:?]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:342) ~[?:?]
+	at java.io.InputStream.transferTo(InputStream.java:704) ~[?:?]
+	at org.openqa.selenium.os.ExternalProcess$Builder.lambda$start$0(ExternalProcess.java:209) ~[?:?]
+	at java.lang.Thread.run(Thread.java:829) [?:?]
+150466 [Thread-776] WARN  org.openqa.selenium.os.ExternalProcess - failed to copy the output of process 693
+java.io.IOException: Stream closed
+	at java.io.BufferedInputStream.getBufIfOpen(BufferedInputStream.java:176) ~[?:?]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:342) ~[?:?]
+	at java.io.InputStream.transferTo(InputStream.java:704) ~[?:?]
+	at org.openqa.selenium.os.ExternalProcess$Builder.lambda$start$0(ExternalProcess.java:209) ~[?:?]
+	at java.lang.Thread.run(Thread.java:829) [?:?]
+150466 [Thread-776] WARN  org.openqa.selenium.os.ExternalProcess - failed to copy the output of process 693
+java.io.IOException: Stream closed
+	at java.io.BufferedInputStream.getBufIfOpen(BufferedInputStream.java:176) ~[?:?]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:342) ~[?:?]
+	at java.io.InputStream.transferTo(InputStream.java:704) ~[?:?]
+	at org.openqa.selenium.os.ExternalProcess$Builder.lambda$start$0(ExternalProcess.java:209) ~[?:?]
+	at java.lang.Thread.run(Thread.java:829) [?:?]
+150467 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SqlInjectionMsSqlScanRule strength MEDIUM threshold MEDIUM
+150506 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SqlInjectionMsSqlScanRule in 0.039s with 0 message(s) sent and 0 alert(s) raised.
+150507 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | Log4ShellScanRule strength MEDIUM threshold MEDIUM
+150513 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - skipped plugin [no Active Scan OAST service is selected.] http://192.168.80.10:8080 | Log4ShellScanRule in 0.006s with 0 message(s) sent and 0 alert(s) raised.
+150513 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | Spring4ShellScanRule strength MEDIUM threshold MEDIUM
+151240 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | Spring4ShellScanRule in 0.727s with 67 message(s) sent and 0 alert(s) raised.
+151240 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | CodeInjectionScanRule strength MEDIUM threshold MEDIUM
+151283 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | CodeInjectionScanRule in 0.043s with 0 message(s) sent and 0 alert(s) raised.
+151283 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | CommandInjectionScanRule strength MEDIUM threshold MEDIUM
+151352 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | CommandInjectionScanRule in 0.069s with 0 message(s) sent and 0 alert(s) raised.
+151352 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | XpathInjectionScanRule strength MEDIUM threshold MEDIUM
+151393 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | XpathInjectionScanRule in 0.041s with 0 message(s) sent and 0 alert(s) raised.
+151393 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | XxeScanRule strength MEDIUM threshold MEDIUM
+151424 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | XxeScanRule in 0.031s with 0 message(s) sent and 0 alert(s) raised.
+151424 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | PaddingOracleScanRule strength MEDIUM threshold MEDIUM
+151452 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | PaddingOracleScanRule in 0.028s with 0 message(s) sent and 0 alert(s) raised.
+151452 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | CloudMetadataScanRule strength MEDIUM threshold MEDIUM
+151458 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SstiScanRule strength MEDIUM threshold MEDIUM
+151471 [ZAP-ActiveScanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | CloudMetadataScanRule in 0.019s with 4 message(s) sent and 0 alert(s) raised.
+151640 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SstiScanRule in 0.181s with 0 message(s) sent and 0 alert(s) raised.
+151640 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SstiBlindScanRule strength MEDIUM threshold MEDIUM
+151720 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SstiBlindScanRule in 0.08s with 0 message(s) sent and 0 alert(s) raised.
+151720 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | DirectoryBrowsingScanRule strength MEDIUM threshold MEDIUM
+151803 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | DirectoryBrowsingScanRule in 0.083s with 33 message(s) sent and 0 alert(s) raised.
+151804 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | BufferOverflowScanRule strength MEDIUM threshold MEDIUM
+151841 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | BufferOverflowScanRule in 0.037s with 0 message(s) sent and 0 alert(s) raised.
+151841 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | FormatStringScanRule strength MEDIUM threshold MEDIUM
+151880 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | FormatStringScanRule in 0.039s with 0 message(s) sent and 0 alert(s) raised.
+151880 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | CrlfInjectionScanRule strength MEDIUM threshold MEDIUM
+151919 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | CrlfInjectionScanRule in 0.039s with 0 message(s) sent and 0 alert(s) raised.
+151920 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | ParameterTamperScanRule strength MEDIUM threshold MEDIUM
+151964 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | ParameterTamperScanRule in 0.044s with 0 message(s) sent and 0 alert(s) raised.
+151964 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | ElmahScanRule strength MEDIUM threshold MEDIUM
+151967 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | TraceAxdScanRule strength MEDIUM threshold MEDIUM
+151974 [ZAP-ActiveScanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | ElmahScanRule in 0.01s with 1 message(s) sent and 0 alert(s) raised.
+152021 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | TraceAxdScanRule in 0.054s with 9 message(s) sent and 0 alert(s) raised.
+152022 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | HtAccessScanRule strength MEDIUM threshold MEDIUM
+152460 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | HtAccessScanRule in 0.438s with 9 message(s) sent and 0 alert(s) raised.
+152461 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | EnvFileScanRule strength MEDIUM threshold MEDIUM
+152709 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | EnvFileScanRule in 0.248s with 9 message(s) sent and 0 alert(s) raised.
+152709 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | HiddenFilesScanRule strength MEDIUM threshold MEDIUM
+152738 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SpringActuatorScanRule strength MEDIUM threshold MEDIUM
+152741 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | XsltInjectionScanRule strength MEDIUM threshold MEDIUM
+152758 [ZAP-ActiveScanner-1] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SpringActuatorScanRule in 0.021s with 2 message(s) sent and 0 alert(s) raised.
+152843 [ZAP-ActiveScanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | HiddenFilesScanRule in 0.134s with 50 message(s) sent and 0 alert(s) raised.
+152970 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | XsltInjectionScanRule in 0.229s with 0 message(s) sent and 0 alert(s) raised.
+152970 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | GetForPostScanRule strength MEDIUM threshold MEDIUM
+153016 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | GetForPostScanRule in 0.046s with 0 message(s) sent and 0 alert(s) raised.
+153017 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | UserAgentScanRule strength MEDIUM threshold MEDIUM
+154482 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | UserAgentScanRule in 1.465s with 396 message(s) sent and 60 alert(s) raised.
+154482 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | ScriptsActiveScanner strength MEDIUM threshold MEDIUM
+154485 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - skipped plugin [no scripts enabled] http://192.168.80.10:8080 | ScriptsActiveScanner in 0.003s with 0 message(s) sent and 0 alert(s) raised.
+154485 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SourceCodeDisclosureGitScanRule strength MEDIUM threshold MEDIUM
+154550 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SourceCodeDisclosureGitScanRule in 0.065s with 0 message(s) sent and 0 alert(s) raised.
+154550 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SourceCodeDisclosureFileInclusionScanRule strength MEDIUM threshold MEDIUM
+154588 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SourceCodeDisclosureFileInclusionScanRule in 0.038s with 0 message(s) sent and 0 alert(s) raised.
+154588 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | ShellShockScanRule strength MEDIUM threshold MEDIUM
+154629 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | ShellShockScanRule in 0.041s with 0 message(s) sent and 0 alert(s) raised.
+154629 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | HttPoxyScanRule strength MEDIUM threshold MEDIUM
+156136 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | HttPoxyScanRule in 1.507s with 66 message(s) sent and 0 alert(s) raised.
+156137 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | CrossDomainScanRule strength MEDIUM threshold MEDIUM
+156140 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SessionFixationScanRule strength MEDIUM threshold MEDIUM
+156181 [ZAP-ActiveScanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | CrossDomainScanRule in 0.043s with 2 message(s) sent and 0 alert(s) raised.
+156181 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SessionFixationScanRule in 0.041s with 0 message(s) sent and 0 alert(s) raised.
+156181 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | OutOfBandXssScanRule strength MEDIUM threshold MEDIUM
+156212 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | OutOfBandXssScanRule in 0.031s with 0 message(s) sent and 0 alert(s) raised.
+156212 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SsrfScanRule strength MEDIUM threshold MEDIUM
+156250 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SsrfScanRule in 0.038s with 0 message(s) sent and 0 alert(s) raised.
+156251 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | Text4ShellScanRule strength MEDIUM threshold MEDIUM
+156254 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - skipped plugin [no Active Scan OAST service is selected.] http://192.168.80.10:8080 | Text4ShellScanRule in 0.003s with 0 message(s) sent and 0 alert(s) raised.
+156254 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | ExpressionLanguageInjectionScanRule strength MEDIUM threshold MEDIUM
+156283 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | ExpressionLanguageInjectionScanRule in 0.029s with 0 message(s) sent and 0 alert(s) raised.
+156283 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SOAPActionSpoofingActiveScanRule strength MEDIUM threshold MEDIUM
+156313 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SOAPActionSpoofingActiveScanRule in 0.03s with 0 message(s) sent and 0 alert(s) raised.
+156313 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SOAPXMLInjectionActiveScanRule strength MEDIUM threshold MEDIUM
+156350 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SOAPXMLInjectionActiveScanRule in 0.036s with 0 message(s) sent and 0 alert(s) raised.
+156350 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SourceCodeDisclosureSvnScanRule strength MEDIUM threshold MEDIUM
+156384 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SourceCodeDisclosureSvnScanRule in 0.033s with 8 message(s) sent and 0 alert(s) raised.
+156384 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | RelativePathConfusionScanRule strength MEDIUM threshold MEDIUM
+156878 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | RelativePathConfusionScanRule in 0.494s with 15 message(s) sent and 0 alert(s) raised.
+156879 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | BackupFileDisclosureScanRule strength MEDIUM threshold MEDIUM
+158169 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | BackupFileDisclosureScanRule in 1.29s with 695 message(s) sent and 0 alert(s) raised.
+158169 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | HttpOnlySiteScanRule strength MEDIUM threshold MEDIUM
+158171 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | CsrfTokenScanRule strength MEDIUM threshold MEDIUM
+158177 [ZAP-ActiveScanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | HttpOnlySiteScanRule in 0.008s with 0 message(s) sent and 0 alert(s) raised.
+158202 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | CsrfTokenScanRule in 0.031s with 0 message(s) sent and 0 alert(s) raised.
+158202 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | IntegerOverflowScanRule strength MEDIUM threshold MEDIUM
+158245 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | IntegerOverflowScanRule in 0.043s with 0 message(s) sent and 0 alert(s) raised.
+158245 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | ProxyDisclosureScanRule strength MEDIUM threshold MEDIUM
+159924 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | ProxyDisclosureScanRule in 1.679s with 264 message(s) sent and 0 alert(s) raised.
+159924 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | ForbiddenBypassScanRule strength MEDIUM threshold MEDIUM
+161407 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | ForbiddenBypassScanRule in 1.482s with 353 message(s) sent and 21 alert(s) raised.
+161407 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | CorsScanRule strength MEDIUM threshold MEDIUM
+162880 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | CorsScanRule in 1.472s with 231 message(s) sent and 0 alert(s) raised.
+162880 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | ExponentialEntityExpansionScanRule strength MEDIUM threshold MEDIUM
+162896 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | ExponentialEntityExpansionScanRule in 0.016s with 0 message(s) sent and 0 alert(s) raised.
+162897 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | InsecureHttpMethodScanRule strength MEDIUM threshold MEDIUM
+162933 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | InsecureHttpMethodScanRule in 0.036s with 33 message(s) sent and 0 alert(s) raised.
+162934 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | HttpsAsHttpScanRule strength MEDIUM threshold MEDIUM
+162952 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | HttpsAsHttpScanRule in 0.018s with 0 message(s) sent and 0 alert(s) raised.
+162952 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | HttpParameterPollutionScanRule strength MEDIUM threshold MEDIUM
+162971 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | HttpParameterPollutionScanRule in 0.019s with 0 message(s) sent and 0 alert(s) raised.
+162972 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | UsernameEnumerationScanRule strength MEDIUM threshold MEDIUM
+162974 [ZAP-Scanner-0] INFO  org.zaproxy.zap.extension.ascanrulesBeta.UsernameEnumerationScanRule - There does not appear to be any configured contexts using Form-based Authentication. Further attempts during the current scan will be skipped.
+162974 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - skipped plugin http://192.168.80.10:8080 | UsernameEnumerationScanRule in 0.002s with 0 message(s) sent and 0 alert(s) raised.
+162974 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - start host http://192.168.80.10:8080 | SlackerCookieScanRule strength MEDIUM threshold MEDIUM
+162997 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host/plugin http://192.168.80.10:8080 | SlackerCookieScanRule in 0.023s with 2 message(s) sent and 1 alert(s) raised.
+162997 [ZAP-Scanner-0] INFO  org.parosproxy.paros.core.scanner.HostProcess - completed host http://192.168.80.10:8080 in 110.876s with 82 alert(s) raised.
+162998 [Thread-54] INFO  org.parosproxy.paros.core.scanner.Scanner - scanner completed in 110.894s
+[Pipeline] }
+$ ssh-agent -k
+unset SSH_AUTH_SOCK;
+unset SSH_AGENT_PID;
+echo Agent pid 62946 killed;
+[ssh-agent] Stopped.
+[Pipeline] // sshagent
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
